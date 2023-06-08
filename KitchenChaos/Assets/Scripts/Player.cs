@@ -5,13 +5,15 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] private GameInput _gameInput;
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotateSpeed = 10f;
+
     private bool isWalking;
 
     private void Update()
     {
-        Vector2 inputVector = new Vector2(0, 0);
+        /*Vector2 inputVector = new Vector2(0, 0);
 
         if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
@@ -30,8 +32,9 @@ public class Player : MonoBehaviour
             inputVector.x = +1;
         }
 
-        inputVector = inputVector.normalized; //fixes the higher diagonal speed
+        inputVector = inputVector.normalized; //fixes the higher diagonal speed*/
 
+        Vector2 inputVector = _gameInput.GetMovementVectorNormalized();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
         isWalking = moveDir != Vector3.zero;
