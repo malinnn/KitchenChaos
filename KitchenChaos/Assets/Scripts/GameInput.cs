@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class GameInput : MonoBehaviour
 {
-    public Vector2 GetMovementVectorNormalized()
+    private PlayerInputActions _inputActions;
+    private void Awake()
     {
-        Vector2 inputVector = new Vector2(0, 0);
+        _inputActions = new PlayerInputActions();
+        _inputActions.Player.Enable();
+    }
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+    public Vector2 GetInput()
+    {
+        Vector2 inputVector = _inputActions.Player.Move.ReadValue<Vector2>();
+
+       /* if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             inputVector.y = +1;
         }
@@ -23,7 +30,7 @@ public class GameInput : MonoBehaviour
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             inputVector.x = +1;
-        }
+        }*/
 
         inputVector = inputVector.normalized; //fixes the higher diagonal speed
 
