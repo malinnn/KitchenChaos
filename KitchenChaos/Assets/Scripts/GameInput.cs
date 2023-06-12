@@ -5,10 +5,12 @@ using UnityEngine;
 public class GameInput : MonoBehaviour
 {
     private PlayerInputActions _inputActions;
+
     private void Awake()
     {
         _inputActions = new PlayerInputActions();
         _inputActions.Player.Enable();
+        //_inputActions.Player.inte
     }
 
     public Vector2 GetInput()

@@ -6,6 +6,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private GameInput _gameInput;
+    [SerializeField] private LayerMask _countersLayerMask;
 
     [SerializeField] private float _moveSpeed = 7f;
     [SerializeField] private float _rotateSpeed = 10f;
@@ -13,8 +14,44 @@ public class Player : MonoBehaviour
     [SerializeField] private float _playerHeight = 1f;
 
     private bool isWalking;
+    private Vector3 lastInteractDir;
 
     private void Update()
+    {
+        HandleMovement();
+        HandleInteractions();
+    }
+
+    public bool IsWalking()
+    {
+        return isWalking;
+    }
+
+    public void HandleInteractions()
+    {
+        Vector2 inputVector = _gameInput.GetInput();
+        Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
+
+        if(moveDir != Vector3.zero )
+        {
+            lastInteractDir = moveDir;
+        }
+
+        float interactDistance = 2f;
+
+        if (Physics.Raycast(transform.position, moveDir, out RaycastHit raycastHit, interactDistance, _countersLayerMask))
+        {
+            //Debug.Log(raycastHit.transform);
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            {
+                //Has ClearCounter
+                clearCounter.Interact();
+            }
+        }
+        else Debug.Log("---");
+    }
+
+    private void HandleMovement()
     {
         Vector2 inputVector = _gameInput.GetInput();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
@@ -64,10 +101,5 @@ public class Player : MonoBehaviour
         {
             transform.forward = Vector3.Slerp(transform.forward, moveDir, Time.deltaTime * _rotateSpeed);
         }
-    }
-
-    public bool IsWalking()
-    {
-        return isWalking;
     }
 }
