@@ -73,27 +73,22 @@ public class Player : MonoBehaviour
             lastInteractDir = moveDir;
         }
 
-        bool counterFound = Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, _interactDistance, _countersLayerMask);
-
-        if (counterFound)
+        if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, _interactDistance, _countersLayerMask))
         {
-            bool hasComponent = raycastHit.transform.TryGetComponent(out ClearCounter clearCounter);
 
-            if (hasComponent)
+            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
             {
                 if (clearCounter != _selectedCounter)
                 {
                     ChangeSelectedCounter(clearCounter);
                 }
             }
-            
-            if (hasComponent == false)
+            else
             {
                 ChangeSelectedCounter(null);
             }
         }
-        
-        if(counterFound == false)
+        else
         {
             ChangeSelectedCounter(null);
         }

@@ -15,24 +15,6 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Player_OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
     {
-        /*if(e.selectedCounter == _currentCounter)
-        {
-            Show();
-        }
-        else
-        {
-            Hide();
-        }*/
         _selectedVisual.SetActive(e.selectedCounter == _currentCounter);
-    }
-
-    private void Show()
-    {
-        _selectedVisual.SetActive(true);
-    }
-
-    private void Hide()
-    {
-        _selectedVisual.SetActive(false);
     }
 }

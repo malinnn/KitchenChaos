@@ -905,7 +905,7 @@ PrefabInstance:
     - target: {fileID: 2938550683282089758, guid: d1c66040383d2544aafad79e2c553136,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 4.24
       objectReference: {fileID: 0}
     - target: {fileID: 2938550683282089758, guid: d1c66040383d2544aafad79e2c553136,
         type: 3}
@@ -942,6 +942,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+        type: 3}
+      propertyPath: _tomatoPrefab
+      value: 
+      objectReference: {fileID: 2431153819094540825, guid: 45178aa5835dce3408e0dae09c376ac4,
+        type: 3}
+    - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+        type: 3}
+      propertyPath: _kitchenObject
+      value: 
+      objectReference: {fileID: 11400000, guid: fd32493bfd3c48443a85c6781a9b60f7,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1061,7 +1073,7 @@ PrefabInstance:
     - target: {fileID: 2938550683282089758, guid: d1c66040383d2544aafad79e2c553136,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3
+      value: 4.16
       objectReference: {fileID: 0}
     - target: {fileID: 2938550683282089758, guid: d1c66040383d2544aafad79e2c553136,
         type: 3}
@@ -1098,6 +1110,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+        type: 3}
+      propertyPath: _kitchenObject
+      value: 
+      objectReference: {fileID: 11400000, guid: d2cdc3319b1bfd64b94abaac2f01d51e,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
