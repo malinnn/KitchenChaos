@@ -10,20 +10,20 @@ public class SelectedCounterVisual : MonoBehaviour
 
     private void Start()
     {
-        Player.Instance.OnSelectedCounterChanged += SelectedCounterChanged;
+        Player.Instance.OnSelectedCounterChanged += Player_OnSelectedCounterChanged;
     }
 
-    private void SelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
+    private void Player_OnSelectedCounterChanged(object sender, Player.OnSelectedCounterChangedEventArgs e)
     {
-        if(e.selectedCounter == _currentCounter)
+        /*if(e.selectedCounter == _currentCounter)
         {
             Show();
-            //_selectedVisual.SetActive(e.selectedCounter == _currentCounter);
         }
         else
         {
             Hide();
-        }
+        }*/
+        _selectedVisual.SetActive(e.selectedCounter == _currentCounter);
     }
 
     private void Show()
