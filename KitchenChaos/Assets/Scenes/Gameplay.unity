@@ -123,6 +123,18 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &104206083 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+    type: 3}
+  m_PrefabInstance: {fileID: 1034539603}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc8eedced5e3b6748812562f7d269b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &280093806
 GameObject:
   m_ObjectHideFlags: 3
@@ -952,6 +964,11 @@ PrefabInstance:
         type: 3}
       propertyPath: _kitchenObject
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+        type: 3}
+      propertyPath: _kitchenObjectSO
+      value: 
       objectReference: {fileID: 11400000, guid: fd32493bfd3c48443a85c6781a9b60f7,
         type: 2}
     m_RemovedComponents: []
@@ -1112,7 +1129,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
         type: 3}
+      propertyPath: testing
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+        type: 3}
+      propertyPath: secondCounter
+      value: 
+      objectReference: {fileID: 104206083}
+    - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+        type: 3}
       propertyPath: _kitchenObject
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7051251020414042233, guid: d1c66040383d2544aafad79e2c553136,
+        type: 3}
+      propertyPath: _kitchenObjectSO
       value: 
       objectReference: {fileID: 11400000, guid: d2cdc3319b1bfd64b94abaac2f01d51e,
         type: 2}
