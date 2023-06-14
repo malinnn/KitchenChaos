@@ -24,12 +24,12 @@ public class KitchenObject : MonoBehaviour
             _kitchenObjectParent.ClearKitchenObject();
         }
 
-        this._kitchenObjectParent = kitchenObjectParent;
-
         if (kitchenObjectParent.HasKitchenObject())
         {
             Debug.LogError("Counter already as food on it !");
         }
+
+        this._kitchenObjectParent = kitchenObjectParent;
 
         kitchenObjectParent.SetKitchenObject(this);
 
