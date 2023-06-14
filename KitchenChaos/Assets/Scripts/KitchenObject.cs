@@ -24,6 +24,12 @@ public class KitchenObject : MonoBehaviour
             _currentCounter.SetKitchenObject(null);
         }
         _currentCounter = clearCounter;
+
+        if (clearCounter.HasKitchenObject())
+        {
+            Debug.LogWarning("Counter already as food on it !");
+        }
+
         transform.parent = clearCounter.GetCounterTopPoint();
         clearCounter.SetKitchenObject(this);
         transform.localPosition = Vector3.zero;
