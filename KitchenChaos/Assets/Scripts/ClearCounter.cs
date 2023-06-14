@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClearCounter : MonoBehaviour
+public class ClearCounter : MonoBehaviour, IKitchenObjectParent
 {
     [SerializeField] private KitchenObjectSO _kitchenObjectSO;
     [SerializeField] private GameObject _counterTopPoint;
@@ -11,31 +11,31 @@ public class ClearCounter : MonoBehaviour
     public bool testing;
     public ClearCounter secondCounter;
 
-    private void Update()
+    /*private void Update()
     {
         if (testing && Input.GetKeyDown(KeyCode.T))
         {
-            if(_kitchenObject != null)
+            if (_kitchenObject != null)
             {
-                _kitchenObject.SetCurrentCounter(secondCounter);
+                _kitchenObject.SetKitchenObjectParent(secondCounter);
             }
         }
-    }
+    }*/
 
-    public void Interact()
+    public void Interact(Player player)
     {
         if (_kitchenObject == null)
         {
             GameObject kitchenObjectTransform = Instantiate(_kitchenObjectSO.prefab, _counterTopPoint.transform);
-            kitchenObjectTransform.GetComponent<KitchenObject>().SetCurrentCounter(this);
-            kitchenObjectTransform.transform.localPosition = Vector3.zero;
+            kitchenObjectTransform.GetComponent<KitchenObject>().SetKitchenObjectParent(this);
+            //kitchenObjectTransform.transform.localPosition = Vector3.zero;
 
-            _kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
-            _kitchenObject.SetCurrentCounter(this);
+            /*_kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+            _kitchenObject.SetKitchenObjectParent(this);*/
         }
-        else
+        else 
         {
-            Debug.Log("Food already on : " + _kitchenObject.GetCurrentCounter());
+            _kitchenObject.SetKitchenObjectParent(player);
         }
     }
 
