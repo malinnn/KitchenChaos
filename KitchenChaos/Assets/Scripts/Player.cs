@@ -12,7 +12,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     public event EventHandler<OnSelectedCounterChangedEventArgs> OnSelectedCounterChanged;
     public class OnSelectedCounterChangedEventArgs : EventArgs
     {
-        public ClearCounter selectedCounter;
+        public BaseCounter selectedCounter;
     }
 
 
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     private bool isWalking;
     private Vector3 lastInteractDir;
-    private ClearCounter _selectedCounter;
+    private BaseCounter _selectedCounter;
     private KitchenObject _kitchenObject;
 
     private void Awake()
@@ -49,7 +49,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         if(_selectedCounter != null)
         {
-            _selectedCounter.Interact(this);
+            //_selectedCounter.Interact(this);
         }
     }
 
@@ -76,12 +76,12 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
         if (Physics.Raycast(transform.position, lastInteractDir, out RaycastHit raycastHit, _interactDistance, _countersLayerMask))
         {
-
-            if (raycastHit.transform.TryGetComponent(out ClearCounter clearCounter))
+            if (raycastHit.transform.TryGetComponent(out BaseCounter baseCounter))
             {
-                if (clearCounter != _selectedCounter)
+                //Has ClearCounter
+                if (baseCounter != _selectedCounter)
                 {
-                    ChangeSelectedCounter(clearCounter);
+                    ChangeSelectedCounter(baseCounter);
                 }
             }
             else
@@ -147,9 +147,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         }
     }
 
-    public void ChangeSelectedCounter(ClearCounter selectedCounter)
+    public void ChangeSelectedCounter(BaseCounter baseCounter)
     {
-        this._selectedCounter = selectedCounter;
+        _selectedCounter = baseCounter;
 
         OnSelectedCounterChanged?.Invoke(this, new OnSelectedCounterChangedEventArgs
         {
