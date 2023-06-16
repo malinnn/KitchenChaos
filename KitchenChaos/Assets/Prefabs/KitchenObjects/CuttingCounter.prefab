@@ -30,6 +30,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4589716710238282923, guid: d72bee846803d074784ffb8f64e993ca,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589716710238282923, guid: d72bee846803d074784ffb8f64e993ca,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589716710238282923, guid: d72bee846803d074784ffb8f64e993ca,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589716710238282923, guid: d72bee846803d074784ffb8f64e993ca,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -77,6 +92,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4589716710238282923, guid: d72bee846803d074784ffb8f64e993ca,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5224288035316877376, guid: d72bee846803d074784ffb8f64e993ca,
         type: 3}
@@ -131,11 +151,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0973b8c8150e0d04f8ec8155bc410242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _baseCounter: {fileID: -5575138021146500260}
   _visualGameObjectArray:
   - {fileID: 7279147408177064386}
   - {fileID: 6767653560278289707}
   - {fileID: 3209197172901703932}
-  _baseCounter: {fileID: -5575138021146500260}
 --- !u!1 &3209197172901703932 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4171094756720850327, guid: d72bee846803d074784ffb8f64e993ca,
@@ -170,7 +190,7 @@ PrefabInstance:
     - target: {fileID: 2938550683282089758, guid: e71310127e2f63440a9d8de568ea28ec,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2938550683282089758, guid: e71310127e2f63440a9d8de568ea28ec,
         type: 3}
@@ -265,7 +285,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _counterTopPoint: {fileID: 3888250583025625535}
   _kitchenObject: {fileID: 0}
-  _kitchenObjectSO: {fileID: 0}
+  _cutKitchenObjectSO: {fileID: 11400000, guid: b378d915d0b044145b8067bd9fa66247,
+    type: 2}
 --- !u!1 &3888250583025625535 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 55354933354173987, guid: e71310127e2f63440a9d8de568ea28ec,

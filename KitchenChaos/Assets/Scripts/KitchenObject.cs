@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class KitchenObject : MonoBehaviour
@@ -7,7 +9,7 @@ public class KitchenObject : MonoBehaviour
     [SerializeField] private KitchenObjectSO _kitchenObjectSO;
     [SerializeField] private IKitchenObjectParent _kitchenObjectParent;
 
-    public KitchenObjectSO GetKitchenObject()
+    public KitchenObjectSO GetKitchenObjectSO()
     {
         return _kitchenObjectSO;
     }
@@ -34,5 +36,19 @@ public class KitchenObject : MonoBehaviour
 
         transform.parent = kitchenObjectParent.GetCounterTopPoint();
         transform.localPosition = Vector3.zero;
+    }
+
+    public void DestroySelf()
+    {
+        Destroy(gameObject);
+    }
+
+    public static KitchenObject SpawnKitchenObject(KitchenObjectSO kitchenObjectSO, IKitchenObjectParent kitchenObjectParent)
+    {
+        GameObject kitchenObjectTransform = Instantiate(kitchenObjectSO.prefab);
+        KitchenObject kitchenObject = kitchenObjectTransform.GetComponent<KitchenObject>();
+        kitchenObject.SetKitchenObjectParent(kitchenObjectParent);
+        
+        return kitchenObject;
     }
 }

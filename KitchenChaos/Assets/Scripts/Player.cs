@@ -43,6 +43,15 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private void Start()
     {
         _gameInput.OnInteractAction += GameInput_OnInteractAction;
+        _gameInput.OnInteractAlternateAction += GameInput_OnInteractAlternateAction;
+    }
+
+    private void GameInput_OnInteractAlternateAction(object sender, EventArgs e)
+    {
+        if(_selectedCounter != null)
+        {
+            _selectedCounter.InteractAlternate(this);
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, System.EventArgs e)
@@ -108,7 +117,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
             //can't move diagonally
 
             Vector3 moveDirX = new Vector3(moveDir.x, 0, 0);
-            canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * _playerHeight, _playerWidth, moveDirX, moveDistance);
+            canMove = moveDir.x != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * _playerHeight, _playerWidth, moveDirX, moveDistance);
 
             //can move only on x
 
@@ -121,7 +130,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
                 //if can't move on x, try z
 
                 Vector3 moveDirZ = new Vector3(0, 0, moveDir.z);
-                canMove = !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * _playerHeight, _playerWidth, moveDirZ, moveDistance);
+                canMove = moveDir.z != 0 && !Physics.CapsuleCast(transform.position, transform.position + Vector3.up * _playerHeight, _playerWidth, moveDirZ, moveDistance);
 
                 //can move only on z
 
