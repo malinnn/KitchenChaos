@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 938bd56a87092d7468b1d2bbccea9cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cuttingCounter: {fileID: 0}
+  _hasProgressGameObject: {fileID: 0}
   _barImage: {fileID: 3906117315939852031}
   _uiHolder: {fileID: 8054771069801564065}
 --- !u!1 &5528806460964509187
