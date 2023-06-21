@@ -14,6 +14,8 @@ public class KitchenObject : MonoBehaviour
         return _kitchenObjectSO;
     }
 
+
+
     public IKitchenObjectParent GetCurrentCounter()
     {
         return _kitchenObjectParent;
