@@ -30,7 +30,7 @@ public class KitchenObject : MonoBehaviour
 
         if (kitchenObjectParent.HasKitchenObject())
         {
-            Debug.LogWarning("Counter already as food on it !");
+            //Debug.LogWarning("Counter already as food on it !");
         }
 
         this._kitchenObjectParent = kitchenObjectParent;
