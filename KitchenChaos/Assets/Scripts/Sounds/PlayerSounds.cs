@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
 {
+    [SerializeField] private float _volume = 0.1f;
+
     private Player _player;
     private float _footstepTimer;
-    private float _footstepTimerMax = 0.1f;
+    private float _footstepTimerMax = 0.15f;
 
 
     private void Awake()
@@ -24,8 +26,7 @@ public class PlayerSounds : MonoBehaviour
 
             if (_player.IsWalking())
             {
-                float volume = 1f;
-                SoundManager.Instance.PlayFootStepsSound(_player.transform.position, volume);
+                SoundManager.Instance.PlayFootStepsSound(Camera.main.transform.position, _volume);
             }
         }
     }

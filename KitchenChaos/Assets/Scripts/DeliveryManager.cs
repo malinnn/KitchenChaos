@@ -19,6 +19,7 @@ public class DeliveryManager : MonoBehaviour
     private float _spawnRecipeTimer;
     private float _spawnRecipeTimerMax = 4f;
     private int waitingRecipeMax = 4;
+    private int _successfulRecipesAmount = 0;
 
     private void Awake()
     {
@@ -50,7 +51,7 @@ public class DeliveryManager : MonoBehaviour
 
     public void DeliverRecipe(PlateKitchenObject plateKitchenObject)
     {
-        for (int i=0;i<_waitingRecipeSOList.Count;i++)
+        for (int i = 0; i < _waitingRecipeSOList.Count; i++)
         {
             RecipeSO waitingRecipeSO = _waitingRecipeSOList[i];
 
@@ -88,6 +89,9 @@ public class DeliveryManager : MonoBehaviour
                 {
                     //Player delivered the correct recipe
                     Debug.Log("Player delivered the correct recipe : " + waitingRecipeSO.recipeName);
+
+                    _successfulRecipesAmount++;
+
                     _waitingRecipeSOList.RemoveAt(i);
 
                     OnRecipeCompleted?.Invoke(this, EventArgs.Empty);
@@ -108,35 +112,8 @@ public class DeliveryManager : MonoBehaviour
         return _waitingRecipeSOList;
     }
 
-    /*public void DeliverRecipe(PlateKitchenObject plateKitchenObject)
+    public int GetSuccessfulRecipesAmount()
     {
-        for (int i=0;i<_waitingRecipeSOList.Count;i++)
-        {
-            RecipeSO waitingRecipeSO = _waitingRecipeSOList[i];
-            
-            bool recipeOk = true;
-
-            if (plateKitchenObject.GetKitchenObjectSOList().Count == waitingRecipeSO.kitchenObjectSOList.Count)
-            {
-
-                foreach (var ingredient in plateKitchenObject.GetKitchenObjectSOList())
-                {
-                    if (!waitingRecipeSO.kitchenObjectSOList.Contains(ingredient))
-                    {
-                        recipeOk = false;
-                        break;
-                    }
-                }
-            }
-
-            if (recipeOk)
-            {
-                Debug.Log("Player served the correct recipe : " + waitingRecipeSO.recipeName);
-                _waitingRecipeSOList.RemoveAt(i);
-                return;
-            }
-            Debug.Log("Player did not serve the correct recipe : " + waitingRecipeSO.recipeName);
-        }
-
-    }*/
+        return _successfulRecipesAmount;
+    }
 }
