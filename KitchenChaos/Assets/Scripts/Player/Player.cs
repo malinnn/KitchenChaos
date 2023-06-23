@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenObjectParent
@@ -80,6 +77,8 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     public void HandleInteractions()
     {
+        if (!KitchenGameManager.Instance.IsGameOver()) return;
+
         Vector2 inputVector = _gameInput.GetInput();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
 
