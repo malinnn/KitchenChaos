@@ -6,16 +6,37 @@ using UnityEngine.EventSystems;
 
 public class GameInput : MonoBehaviour
 {
+    public static GameInput Instance { get; private set; }
+
     public EventHandler OnInteractAction;
     public EventHandler OnInteractAlternateAction;
+    public EventHandler OnPauseAction;
     private PlayerInputActions _inputActions;
 
     private void Awake()
     {
+        Instance = this;
+
         _inputActions = new PlayerInputActions();
-        _inputActions.Player.Enable();
-        _inputActions.Player.Interact.performed += Interact_Performed;
-        _inputActions.Player.InteractAlternate.performed += InteractAlternate_performed;
+        _inputActions.Character.Enable();
+
+        _inputActions.Character.Interact.performed += Interact_Performed;
+        _inputActions.Character.InteractAlternate.performed += InteractAlternate_performed;
+        _inputActions.Character.Pause.performed += Pause_performed;
+    }
+
+    private void OnDestroy()
+    {
+        _inputActions.Character.Interact.performed -= Interact_Performed;
+        _inputActions.Character.InteractAlternate.performed -= InteractAlternate_performed;
+        _inputActions.Character.Pause.performed -= Pause_performed;
+
+        _inputActions.Dispose();
+    }
+
+    private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnPauseAction?.Invoke(this, EventArgs.Empty);
     }
 
     private void InteractAlternate_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
@@ -30,24 +51,7 @@ public class GameInput : MonoBehaviour
 
     public Vector2 GetInput()
     {
-        Vector2 inputVector = _inputActions.Player.Move.ReadValue<Vector2>();
-
-       /* if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
-            inputVector.y = +1;
-        }
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
-            inputVector.x = -1;
-        }
-        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
-            inputVector.y = -1;
-        }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            inputVector.x = +1;
-        }*/
+        Vector2 inputVector = _inputActions.Character.Move.ReadValue<Vector2>();
 
         inputVector = inputVector.normalized; //fixes the higher diagonal speed
 

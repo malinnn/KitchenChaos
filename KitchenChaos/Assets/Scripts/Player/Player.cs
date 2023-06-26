@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IKitchenObjectParent
 {
+    #region FIELDS
     public static Player Instance { get; private set; }
 
     public event EventHandler OnPickedSomething;
@@ -29,6 +30,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     private BaseCounter _selectedCounter;
     private KitchenObject _kitchenObject;
 
+    #endregion
+
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         if (Instance != null)
@@ -69,7 +73,9 @@ public class Player : MonoBehaviour, IKitchenObjectParent
         HandleMovement();
         HandleInteractions();
     }
+    #endregion
 
+    #region FUNCTIONS
     public bool IsWalking()
     {
         return isWalking;
@@ -77,7 +83,7 @@ public class Player : MonoBehaviour, IKitchenObjectParent
 
     public void HandleInteractions()
     {
-        if (!KitchenGameManager.Instance.IsGameOver()) return;
+        //if (KitchenGameManager.Instance.IsGameOver()) return;
 
         Vector2 inputVector = _gameInput.GetInput();
         Vector3 moveDir = new Vector3(inputVector.x, 0f, inputVector.y);
@@ -199,4 +205,5 @@ public class Player : MonoBehaviour, IKitchenObjectParent
     {
         return _kitchenObject != null;
     }
+    #endregion
 }
