@@ -1,19 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class SoundManager : MonoBehaviour
 {
     #region FIELDS
+
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] private AudioClipRefsSO _audioClipRefsSO;
+
+    private float _volume;
+
+    private const string PLAYER_PREFS_SFX = "SFX";
+
     #endregion
 
     #region SUBSCRIPTIONS
     private void Awake()
     {
         Instance = this;
+
+        _volume = PlayerPrefs.GetFloat(PLAYER_PREFS_SFX, 1f);
     }
 
     private void Start()
@@ -78,14 +87,38 @@ public class SoundManager : MonoBehaviour
         PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
     }
 
-    private void PlaySound(AudioClip audioClip, Vector3 position, float volume = 1f)
+    private void PlaySound(AudioClip audioClip, Vector3 position, float volumeMultiplier = 1f)
     {
-        AudioSource.PlayClipAtPoint(audioClip, position, volume);
+        AudioSource.PlayClipAtPoint(audioClip, position, volumeMultiplier * _volume);
     }
 
     public void PlayFootStepsSound(Vector3 position, float volume)
     {
         PlaySound(_audioClipRefsSO.footsteps, position, volume);
     }
+
+    public void ChangeVolume(float changeAmount)
+    {
+        _volume = changeAmount;
+        
+        if (changeAmount > 1)
+        {
+            Debug.LogWarning("ChangeAmount should be between 0 and 1 !");
+        }
+
+        if (_volume > 1f)
+        {
+            _volume = 0f;
+        }
+
+        PlayerPrefs.SetFloat(PLAYER_PREFS_SFX, _volume);
+        PlayerPrefs.Save();
+    }
+
+    public float GetVolume()
+    {
+        return _volume;
+    }
+
     #endregion
 }

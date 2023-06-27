@@ -8,6 +8,7 @@ public class GamePausedUI : MonoBehaviour
     #region FIELDS
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _mainMenuButton;
+    [SerializeField] private Button _optionsButton;
     #endregion
 
     #region SUBSCRIPTIONS
@@ -21,6 +22,11 @@ public class GamePausedUI : MonoBehaviour
         _mainMenuButton.onClick.AddListener(() =>
         {
             Loader.Load(Loader.Scene.MainMenuScene);
+        });
+
+        _optionsButton.onClick.AddListener(() =>
+        {
+            OptionsUI.Instance.Show();
         });
     }
 

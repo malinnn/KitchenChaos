@@ -7,12 +7,25 @@ using UnityEngine.EventSystems;
 public class GameInput : MonoBehaviour
 {
     #region FIELDS
+
     public static GameInput Instance { get; private set; }
 
     public EventHandler OnInteractAction;
     public EventHandler OnInteractAlternateAction;
     public EventHandler OnPauseAction;
     private PlayerInputActions _inputActions;
+
+    public enum Binding
+    {
+        Move_Up,
+        Move_Down,
+        Move_Left,
+        Move_Right,
+        Interact,
+        InteractAlternate,
+        Pause,
+    }
+
     #endregion
 
     #region SUBSCRIPTIONS
@@ -54,6 +67,7 @@ public class GameInput : MonoBehaviour
     #endregion
 
     #region FUNCTIONS
+
     public Vector2 GetInput()
     {
         Vector2 inputVector = _inputActions.Character.Move.ReadValue<Vector2>();
@@ -62,5 +76,28 @@ public class GameInput : MonoBehaviour
 
         return inputVector;
     }
+
+    public string GetBindingText(Binding binding)
+    {
+        switch (binding)
+        {
+            default:
+            case Binding.Move_Up:
+                return _inputActions.Character.Move.bindings[1].ToDisplayString();
+            case Binding.Move_Down:
+                return _inputActions.Character.Move.bindings[2].ToDisplayString();
+            case Binding.Move_Left:
+                return _inputActions.Character.Move.bindings[3].ToDisplayString();
+            case Binding.Move_Right:
+                return _inputActions.Character.Move.bindings[4].ToDisplayString();
+            case Binding.Interact:
+                return _inputActions.Character.Interact.bindings[0].ToDisplayString();  
+            case Binding.InteractAlternate:
+                return _inputActions.Character.InteractAlternate.bindings[0].ToDisplayString();
+            case Binding.Pause:
+                return _inputActions.Character.Pause.bindings[0].ToDisplayString();
+        }
+    }
+
     #endregion
 }
