@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class PlayerSounds : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private float _volume = 0.1f;
 
     private Player _player;
     private float _footstepTimer;
     private float _footstepTimerMax = 0.15f;
+    #endregion
 
-
+    #region FUNCTIONS
     private void Awake()
     {
         _player = GetComponent<Player>();
@@ -30,4 +32,5 @@ public class PlayerSounds : MonoBehaviour
             }
         }
     }
+    #endregion
 }

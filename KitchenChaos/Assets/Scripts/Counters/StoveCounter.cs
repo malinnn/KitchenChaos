@@ -7,6 +7,7 @@ using static CuttingCounter;
 
 public class StoveCounter : BaseCounter, IHasProgress
 {
+    #region FIELDS
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
     public class OnStateChangedEventArgs : EventArgs
@@ -33,7 +34,9 @@ public class StoveCounter : BaseCounter, IHasProgress
 
     private BurningRecipeSO _burningRecipeSO;
     private float _burningTimer;
+    #endregion
 
+    #region FUNCTIONS
     private void Start()
     {
         _state = State.Idle;
@@ -240,4 +243,5 @@ public class StoveCounter : BaseCounter, IHasProgress
         }
         return null;
     }
+    #endregion
 }

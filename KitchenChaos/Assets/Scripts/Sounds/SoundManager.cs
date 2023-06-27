@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    #region FIELDS
     public static SoundManager Instance { get; private set; }
 
     [SerializeField] private AudioClipRefsSO _audioClipRefsSO;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         Instance = this;
@@ -21,6 +24,16 @@ public class SoundManager : MonoBehaviour
         Player.Instance.OnPickedSomething += Player_OnPickedSomething;
         BaseCounter.OnAnyObjectPlacedHere += BaseCounter_OnAnyObjectPlacedHere;
         TrashCounter.OnAnyObjectTrashed += TrashCounter_OnAnyObjectTrashed;
+    }
+
+    private void OnDestroy()
+    {
+        DeliveryManager.Instance.OnRecipeSuccess -= DeliveryManager_OnRecipeSuccess;
+        DeliveryManager.Instance.OnRecipeFailed -= DeliveryManager_OnRecipeFailed;
+        CuttingCounter.OnAnyCut -= CuttingCounter_OnAnyCut;
+        Player.Instance.OnPickedSomething -= Player_OnPickedSomething;
+        BaseCounter.OnAnyObjectPlacedHere -= BaseCounter_OnAnyObjectPlacedHere;
+        TrashCounter.OnAnyObjectTrashed -= TrashCounter_OnAnyObjectTrashed;
     }
 
     private void TrashCounter_OnAnyObjectTrashed(object sender, System.EventArgs e)
@@ -57,7 +70,9 @@ public class SoundManager : MonoBehaviour
         DeliveryCounter deliveryCounter = DeliveryCounter.Instance;
         PlaySound(_audioClipRefsSO.deliverySuccess, deliveryCounter.transform.position);
     }
+    #endregion
 
+    #region FUNCTIONS
     private void PlaySound(AudioClip[] audioClipArray, Vector3 position, float volume = 1f)
     {
         PlaySound(audioClipArray[Random.Range(0, audioClipArray.Length)], position, volume);
@@ -72,4 +87,5 @@ public class SoundManager : MonoBehaviour
     {
         PlaySound(_audioClipRefsSO.footsteps, position, volume);
     }
+    #endregion
 }

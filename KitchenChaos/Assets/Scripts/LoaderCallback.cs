@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class LoaderCallback : MonoBehaviour
 {
+    #region FIELDS
     private bool _isFirstUpdate = true;
+    #endregion
 
+    #region FUNCTIONS
     void Update()
     {
         if (_isFirstUpdate)
@@ -14,4 +17,5 @@ public class LoaderCallback : MonoBehaviour
             Loader.LoaderCallback();
         }
     }
+    #endregion
 }

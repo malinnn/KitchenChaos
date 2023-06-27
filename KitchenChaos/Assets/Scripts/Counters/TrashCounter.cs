@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class TrashCounter : BaseCounter
 {
+    #region FIELDS
     public static event EventHandler OnAnyObjectTrashed;
+    #endregion
 
+    #region FUNCTIONS
     new public static void ResetStaticData()
     {
         OnAnyObjectTrashed = null;
@@ -23,4 +26,5 @@ public class TrashCounter : BaseCounter
             OnAnyObjectTrashed?.Invoke(this, EventArgs.Empty);
         }
     }
+    #endregion
 }

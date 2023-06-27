@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class StoveCounterVisual : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private StoveCounter _stoveCounter;
     [SerializeField] private GameObject _stoveOnGameObject;
     [SerializeField] private GameObject _particlesGameObject;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Start()
     {
         _stoveCounter.OnStateChanged += StoveCounter_OnStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        _stoveCounter.OnStateChanged -= StoveCounter_OnStateChanged;
     }
 
     private void StoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
@@ -19,4 +27,5 @@ public class StoveCounterVisual : MonoBehaviour
         _stoveOnGameObject.SetActive(showVisual);
         _particlesGameObject.SetActive(showVisual);
     }
+    #endregion
 }

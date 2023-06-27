@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class PlatesCounterVisual : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private PlatesCounter _platesCounter;
     [SerializeField] private Transform _counterTopPoint;
     [SerializeField] private Transform _plateVisualPrefab;
 
     private List<GameObject> _plateVisualGameObjectList;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         _plateVisualGameObjectList = new List<GameObject>();
@@ -19,6 +22,12 @@ public class PlatesCounterVisual : MonoBehaviour
     {
         _platesCounter.OnPlateSpawned += PlatesCounter_OnPlateSpawned;
         _platesCounter.OnPlateRemoved += PlatesCounter_OnPlateRemoved;
+    }
+
+    private void OnDestroy()
+    {
+        _platesCounter.OnPlateSpawned -= PlatesCounter_OnPlateSpawned;
+        _platesCounter.OnPlateRemoved -= PlatesCounter_OnPlateRemoved;
     }
 
     private void PlatesCounter_OnPlateRemoved(object sender, System.EventArgs e)
@@ -38,4 +47,5 @@ public class PlatesCounterVisual : MonoBehaviour
 
         _plateVisualGameObjectList.Add(plateVisualTranform.gameObject);
     }
+    #endregion
 }

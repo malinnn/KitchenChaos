@@ -7,9 +7,12 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private Button _playButton;
     [SerializeField] private Button _quitButton;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Start()
     {
         _playButton.onClick.AddListener(() =>
@@ -24,4 +27,5 @@ public class MainMenuUI : MonoBehaviour
 
         Time.timeScale = 1f;
     }
+    #endregion
 }

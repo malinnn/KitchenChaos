@@ -3,12 +3,20 @@ using UnityEngine;
 
 public class GameStartCountdownUI : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private TextMeshProUGUI _countdownText;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Start()
     {
         KitchenGameManager.Instance.OnStateChanged += KitchenGameManager_OnStateChanged;
         Hide();
+    }
+
+    private void OnDestroy()
+    {
+        KitchenGameManager.Instance.OnStateChanged -= KitchenGameManager_OnStateChanged;
     }
 
     private void KitchenGameManager_OnStateChanged(object sender, System.EventArgs e)
@@ -22,7 +30,9 @@ public class GameStartCountdownUI : MonoBehaviour
             Hide();
         }
     }
+    #endregion
 
+    #region FUNCTIONS
     private void Update()
     {
         _countdownText.text = Mathf.Ceil(KitchenGameManager.Instance.GetCountdownToStartTimer()).ToString();
@@ -37,4 +47,5 @@ public class GameStartCountdownUI : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    #endregion
 }

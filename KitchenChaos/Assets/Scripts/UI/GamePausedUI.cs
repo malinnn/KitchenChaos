@@ -5,9 +5,12 @@ using UnityEngine.UI;
 
 public class GamePausedUI : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private Button _resumeButton;
     [SerializeField] private Button _mainMenuButton;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         _resumeButton.onClick.AddListener(() =>
@@ -28,6 +31,12 @@ public class GamePausedUI : MonoBehaviour
         Hide();
     }
 
+    private void OnDestroy()
+    {
+        KitchenGameManager.Instance.OnGamePaused -= KitchenGameManager_OnGamePaused;
+        KitchenGameManager.Instance.OnGameUnpaused -= KitchenGameManager_OnGameUnpaused;
+    }
+
     private void KitchenGameManager_OnGamePaused(object sender, System.EventArgs e)
     {
         Show();
@@ -37,7 +46,9 @@ public class GamePausedUI : MonoBehaviour
     {
         Hide();
     }
+    #endregion
 
+    #region FUNCTIONS
     private void Show()
     {
         gameObject.SetActive(true);
@@ -47,4 +58,5 @@ public class GamePausedUI : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    #endregion
 }

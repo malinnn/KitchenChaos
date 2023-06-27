@@ -5,13 +5,13 @@ using UnityEngine;
 
 public class KitchenGameManager : MonoBehaviour
 {
+    #region FIELDS
     public static KitchenGameManager Instance { get; private set; }
 
     public event EventHandler OnStateChanged;
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnpaused;
-
-
+    
     private enum State
     {
         WaitingToStart,
@@ -29,7 +29,9 @@ public class KitchenGameManager : MonoBehaviour
     private float _countdownToStartTimer = 3f;
 
     private bool _isGamePaused = false;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         Instance = this;
@@ -41,11 +43,18 @@ public class KitchenGameManager : MonoBehaviour
         GameInput.Instance.OnPauseAction += GameInput_OnPauseAction;
     }
 
+    private void OnDestroy()
+    {
+        GameInput.Instance.OnPauseAction -= GameInput_OnPauseAction;
+    }
+
     private void GameInput_OnPauseAction(object sender, EventArgs e)
     {
         TogglePauseGame();
     }
+    #endregion
 
+    #region FUNCTIONS
     private void Update()
     {
         switch (_state)
@@ -127,4 +136,5 @@ public class KitchenGameManager : MonoBehaviour
             Debug.Log("Game Resumed !");
         }
     }
+    #endregion
 }

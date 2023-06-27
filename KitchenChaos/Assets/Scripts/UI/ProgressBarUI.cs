@@ -5,12 +5,15 @@ using UnityEngine.UI;
 
 public class ProgressBarUI : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private GameObject _hasProgressGameObject;
     [SerializeField] private Image _barImage;
     [SerializeField] private Transform _uiHolder;
 
     private IHasProgress _hasProgress;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Start()
     {
         _hasProgress = _hasProgressGameObject.GetComponent<IHasProgress>();
@@ -23,6 +26,11 @@ public class ProgressBarUI : MonoBehaviour
         _hasProgress.OnProgressChanged += HasProgress_OnProgressChanged;
         _barImage.fillAmount = 0f;
         Hide();
+    }
+
+    private void OnDestroy()
+    {
+        _hasProgress.OnProgressChanged -= HasProgress_OnProgressChanged;
     }
 
     private void HasProgress_OnProgressChanged(object sender, IHasProgress.OnProgressChangedEventArgs e)
@@ -40,7 +48,9 @@ public class ProgressBarUI : MonoBehaviour
             Show();
         }
     }
+    #endregion
 
+    #region FUNCTIONS
     private void Show()
     {
         gameObject.SetActive(true);
@@ -50,4 +60,5 @@ public class ProgressBarUI : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    #endregion
 }

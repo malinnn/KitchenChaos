@@ -6,10 +6,13 @@ using UnityEngine.UI;
 
 public class DeliveryManagerSingleUI : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private TextMeshProUGUI _recipeNameText;
     [SerializeField] private Transform _iconContainer;
     [SerializeField] private Transform _iconTemplate;
+    #endregion
 
+    #region FUNCTIONS
     private void Awake()
     {
         _iconTemplate.gameObject.SetActive(false);
@@ -35,4 +38,5 @@ public class DeliveryManagerSingleUI : MonoBehaviour
             iconTransform.GetComponent<Image>().sprite = kitchenObjectSO.sprite;
         }
     }
+    #endregion
 }

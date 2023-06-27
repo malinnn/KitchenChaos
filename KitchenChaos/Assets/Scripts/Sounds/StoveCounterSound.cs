@@ -2,9 +2,12 @@ using UnityEngine;
 
 public class StoveCounterSound : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private StoveCounter _stoveCounter;
     private AudioSource _audioSource;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -12,6 +15,11 @@ public class StoveCounterSound : MonoBehaviour
     private void Start()
     {
         _stoveCounter.OnStateChanged += StoveCounter_OnStateChanged;
+    }
+
+    private void OnDestroy()
+    {
+        _stoveCounter.OnStateChanged -= StoveCounter_OnStateChanged;
     }
 
     private void StoveCounter_OnStateChanged(object sender, StoveCounter.OnStateChangedEventArgs e)
@@ -27,4 +35,5 @@ public class StoveCounterSound : MonoBehaviour
             _audioSource.Pause();
         }
     }
+    #endregion
 }

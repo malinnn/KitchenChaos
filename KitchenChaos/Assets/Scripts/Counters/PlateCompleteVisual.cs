@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlateCompleteVisual : MonoBehaviour
 {
+    #region FIELDS
     [Serializable]
     public struct KitchenObjectSO_GameObject
     {
@@ -18,8 +19,9 @@ public class PlateCompleteVisual : MonoBehaviour
     [SerializeField] private PlateKitchenObject _plateKitchenObject;
 
     public List<KitchenObjectSO_GameObject> kitchenObjectSOGameObjectList;
-    
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Start()
     {
         _plateKitchenObject.OnIngredientAdded += PlateKitchenObject_OnIngredientAdded;
@@ -28,6 +30,11 @@ public class PlateCompleteVisual : MonoBehaviour
         {
             burgerObject.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        _plateKitchenObject.OnIngredientAdded -= PlateKitchenObject_OnIngredientAdded;
     }
 
     private void PlateKitchenObject_OnIngredientAdded(object sender, PlateKitchenObject.OnIngredientAddedEventArgs e)
@@ -40,4 +47,5 @@ public class PlateCompleteVisual : MonoBehaviour
             }
         }
     }
+    #endregion
 }

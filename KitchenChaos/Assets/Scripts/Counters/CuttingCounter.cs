@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class CuttingCounter : BaseCounter, IHasProgress
 {
+    #region FIELDS
     [SerializeField] private CuttingRecipeSO[] _cutRecipeSOArray;
 
     private int cutCount;
@@ -19,7 +20,9 @@ public class CuttingCounter : BaseCounter, IHasProgress
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
 
     public event EventHandler OnCut;
+    #endregion
 
+    #region FUNCTIONS
     public override void Interact(Player player)
     {
         if (!HasKitchenObject())
@@ -138,4 +141,5 @@ public class CuttingCounter : BaseCounter, IHasProgress
         }
         return 0;
     }
+    #endregion
 }

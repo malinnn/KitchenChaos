@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class DeliveryManager : MonoBehaviour
 {
+    #region FIELDS
     public event EventHandler OnRecipeSpawned;
     public event EventHandler OnRecipeCompleted;
     public event EventHandler OnRecipeSuccess;
@@ -20,7 +21,9 @@ public class DeliveryManager : MonoBehaviour
     private float _spawnRecipeTimerMax = 4f;
     private int waitingRecipeMax = 4;
     private int _successfulRecipesAmount = 0;
+    #endregion
 
+    #region FUNCTIONS
     private void Awake()
     {
         Instance = this;
@@ -116,4 +119,5 @@ public class DeliveryManager : MonoBehaviour
     {
         return _successfulRecipesAmount;
     }
+    #endregion
 }

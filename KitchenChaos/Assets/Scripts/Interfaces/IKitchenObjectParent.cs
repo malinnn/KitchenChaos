@@ -4,6 +4,7 @@ using UnityEngine;
 
 public interface IKitchenObjectParent
 {
+    #region FUNCTIONS
     public Transform GetCounterTopPoint();
 
     public KitchenObject GetKitchenObject();
@@ -13,4 +14,5 @@ public interface IKitchenObjectParent
     public void ClearKitchenObject();
 
     public bool HasKitchenObject();
+    #endregion
 }

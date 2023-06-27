@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public static class Loader
 {
+    #region FIELDS
     public enum Scene
     {
         MainMenuScene,
@@ -14,7 +15,9 @@ public static class Loader
     }
 
     private static Scene _sceneToLoad;
+    #endregion
 
+    #region FUNCTIONS
     public static void Load(Scene scene)
     {
         Loader._sceneToLoad = scene;
@@ -26,4 +29,5 @@ public static class Loader
     {
         SceneManager.LoadScene(_sceneToLoad.ToString());
     }
+    #endregion
 }

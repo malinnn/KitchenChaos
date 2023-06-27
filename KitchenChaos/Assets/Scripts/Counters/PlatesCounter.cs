@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlatesCounter : BaseCounter
 {
+    #region FIELDS
     public event EventHandler OnPlateSpawned;
     public event EventHandler OnPlateRemoved;
 
@@ -14,7 +15,9 @@ public class PlatesCounter : BaseCounter
     private float _spawnPlateTimerMax = 4f;
     private int _stackedPlates;
     private int _stackedPlatesMax = 5;
+    #endregion
 
+    #region FUNCTIONS
     private void Update()
     {
         _spawnPlateTimer += Time.deltaTime;
@@ -39,4 +42,5 @@ public class PlatesCounter : BaseCounter
             }
         }
     }
+    #endregion
 }

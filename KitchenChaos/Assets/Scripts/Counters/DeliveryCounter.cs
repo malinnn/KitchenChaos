@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class DeliveryCounter : BaseCounter
 {
+    #region FIELDS
     public static DeliveryCounter Instance { get; private set; }
+    #endregion
 
+    #region FUNCTIONS
     private void Awake()
     {
         Instance = this;
@@ -23,4 +26,5 @@ public class DeliveryCounter : BaseCounter
             kitchenObject.DestroySelf();
         }
     }
+    #endregion
 }

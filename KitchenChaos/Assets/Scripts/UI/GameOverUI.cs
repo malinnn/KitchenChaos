@@ -5,7 +5,11 @@ using UnityEngine;
 
 public class GameOverUI : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private TextMeshProUGUI _recipeDeliveredText;
+    #endregion
+
+    #region SUBSCRIPTIONS
     private void Start()
     {
         KitchenGameManager.Instance.OnStateChanged += KitchenGameManager_OnStateChanged;
@@ -24,7 +28,9 @@ public class GameOverUI : MonoBehaviour
             Hide();
         }
     }
+    #endregion
 
+    #region FUNCTIONS
     private void Show()
     {
         gameObject.SetActive(true);
@@ -34,4 +40,5 @@ public class GameOverUI : MonoBehaviour
     {
         gameObject.SetActive(false);
     }
+    #endregion
 }

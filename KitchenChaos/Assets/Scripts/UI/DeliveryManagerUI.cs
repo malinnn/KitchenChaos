@@ -4,9 +4,12 @@ using UnityEngine;
 
 public class DeliveryManagerUI : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private Transform _container;
     [SerializeField] private Transform _recipeTemplate;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         _recipeTemplate.gameObject.SetActive(false);
@@ -20,6 +23,12 @@ public class DeliveryManagerUI : MonoBehaviour
         UpdateVisual();
     }
 
+    private void OnDestroy()
+    {
+        DeliveryManager.Instance.OnRecipeSpawned -= DeliveryManager_OnRecipeSpawned;
+        DeliveryManager.Instance.OnRecipeCompleted -= DeliveryManager_OnRecipeCompleted;
+    }
+
     private void DeliveryManager_OnRecipeCompleted(object sender, System.EventArgs e)
     {
         UpdateVisual();
@@ -29,7 +38,9 @@ public class DeliveryManagerUI : MonoBehaviour
     {
         UpdateVisual();
     }
+    #endregion
 
+    #region FUNCTIONS
     private void UpdateVisual()
     {
         foreach (Transform child in _container)
@@ -48,4 +59,5 @@ public class DeliveryManagerUI : MonoBehaviour
             recipeTransform.GetComponent<DeliveryManagerSingleUI>().SetRecipeSO(recipeSO);
         }
     }
+    #endregion
 }

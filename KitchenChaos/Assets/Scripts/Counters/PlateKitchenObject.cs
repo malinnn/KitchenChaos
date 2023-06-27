@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 
 public class PlateKitchenObject : KitchenObject
 {
+    #region FIELDS
     public event EventHandler<OnIngredientAddedEventArgs> OnIngredientAdded;
     public class OnIngredientAddedEventArgs : EventArgs
     {
@@ -15,7 +16,9 @@ public class PlateKitchenObject : KitchenObject
     [SerializeField] private List<KitchenObjectSO> _validKitchenObjectsSOList;
 
     private List<KitchenObjectSO> _kitchenObjectSOList;
+    #endregion
 
+    #region FUNCTIONS
     private void Awake()
     {
         _kitchenObjectSOList = new List<KitchenObjectSO>();
@@ -55,4 +58,5 @@ public class PlateKitchenObject : KitchenObject
     {
         return _kitchenObjectSOList;
     }
+    #endregion
 }

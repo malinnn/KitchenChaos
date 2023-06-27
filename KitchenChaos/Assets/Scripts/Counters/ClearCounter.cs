@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class ClearCounter : BaseCounter
 {
+    #region FIELDS
     [SerializeField] private KitchenObjectSO _kitchenObjectSO;
+    #endregion
 
+    #region FUNCTIONS
     public override void Interact(Player player)
     {
         if (!HasKitchenObject())
@@ -56,4 +59,5 @@ public class ClearCounter : BaseCounter
             }
         }
     }
+    #endregion
 }

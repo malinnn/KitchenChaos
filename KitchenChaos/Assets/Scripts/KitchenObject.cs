@@ -6,15 +6,16 @@ using UnityEngine;
 
 public class KitchenObject : MonoBehaviour
 {
+    #region FIELDS
     [SerializeField] private KitchenObjectSO _kitchenObjectSO;
     [SerializeField] private IKitchenObjectParent _kitchenObjectParent;
+    #endregion
 
+    #region FUNCTIONS
     public KitchenObjectSO GetKitchenObjectSO()
     {
         return _kitchenObjectSO;
     }
-
-
 
     public IKitchenObjectParent GetCurrentCounter()
     {
@@ -68,4 +69,5 @@ public class KitchenObject : MonoBehaviour
         
         return kitchenObject;
     }
+    #endregion
 }

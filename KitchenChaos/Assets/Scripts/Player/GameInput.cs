@@ -6,13 +6,16 @@ using UnityEngine.EventSystems;
 
 public class GameInput : MonoBehaviour
 {
+    #region FIELDS
     public static GameInput Instance { get; private set; }
 
     public EventHandler OnInteractAction;
     public EventHandler OnInteractAlternateAction;
     public EventHandler OnPauseAction;
     private PlayerInputActions _inputActions;
+    #endregion
 
+    #region SUBSCRIPTIONS
     private void Awake()
     {
         Instance = this;
@@ -48,7 +51,9 @@ public class GameInput : MonoBehaviour
     {
         OnInteractAction?.Invoke(this, EventArgs.Empty);
     }
+    #endregion
 
+    #region FUNCTIONS
     public Vector2 GetInput()
     {
         Vector2 inputVector = _inputActions.Character.Move.ReadValue<Vector2>();
@@ -57,4 +62,5 @@ public class GameInput : MonoBehaviour
 
         return inputVector;
     }
+    #endregion
 }

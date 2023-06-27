@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 {
+    #region FIELDS
     public static event EventHandler OnAnyObjectPlacedHere;
 
     public static void ResetStaticData()
@@ -14,7 +15,9 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
 
     [SerializeField] private GameObject _counterTopPoint;
     [SerializeField] private KitchenObject _kitchenObject;
+    #endregion
 
+    #region FUNCTIONS
     public virtual void Interact(Player player)
     {
         Debug.LogError("BaseCounter.Interact();");
@@ -54,4 +57,5 @@ public class BaseCounter : MonoBehaviour, IKitchenObjectParent
     {
         return _kitchenObject != null;
     }
+    #endregion
 }
