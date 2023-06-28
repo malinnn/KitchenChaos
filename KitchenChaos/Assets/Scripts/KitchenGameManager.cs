@@ -12,8 +12,9 @@ public class KitchenGameManager : MonoBehaviour
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnpaused;
     
-    private enum State
+    public enum State
     {
+        Tutorial,
         WaitingToStart,
         CountdownToStart,
         GamePlaying,
@@ -29,13 +30,17 @@ public class KitchenGameManager : MonoBehaviour
     private float _countdownToStartTimer = 3f;
 
     private bool _isGamePaused = false;
+
     #endregion
 
     #region SUBSCRIPTIONS
     private void Awake()
     {
         Instance = this;
-        _state = State.WaitingToStart;
+        _state = State.Tutorial;
+
+        //_state = State.WaitingToStart;
+        //State is set after Interact is first used, in order to close the tutorial
     }
 
     private void Start()
@@ -59,6 +64,8 @@ public class KitchenGameManager : MonoBehaviour
     {
         switch (_state)
         {
+            case State.Tutorial:
+                return;
             case State.WaitingToStart:
                 _waitingToStartTimer -= Time.deltaTime;
                 if (_waitingToStartTimer < 0f)
@@ -88,6 +95,11 @@ public class KitchenGameManager : MonoBehaviour
                 break;
         }
         //Debug.Log(_state);
+    }
+
+    public bool IsTutorial()
+    {
+        return _state == State.Tutorial;
     }
 
     public bool IsGamePlaying()
@@ -136,5 +148,11 @@ public class KitchenGameManager : MonoBehaviour
             Debug.Log("Game Resumed !");
         }
     }
+
+    public void SetState(State state)
+    {
+        _state = state;
+    }
+
     #endregion
 }
