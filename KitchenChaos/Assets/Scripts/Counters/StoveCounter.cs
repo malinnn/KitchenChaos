@@ -10,6 +10,8 @@ public class StoveCounter : BaseCounter, IHasProgress
     #region FIELDS
     public event EventHandler<IHasProgress.OnProgressChangedEventArgs> OnProgressChanged;
     public event EventHandler<OnStateChangedEventArgs> OnStateChanged;
+    public event EventHandler OnWarning;
+    
     public class OnStateChangedEventArgs : EventArgs
     {
         public State state;
@@ -82,6 +84,11 @@ public class StoveCounter : BaseCounter, IHasProgress
                     {
                         progressNormalized = _burningTimer / _burningRecipeSO.burningTimerMax
                     });
+
+                    if (_burningTimer / _burningRecipeSO.burningTimerMax > 0.5f)
+                    {
+                        OnWarning?.Invoke(this, EventArgs.Empty);
+                    }
 
                     if (_burningTimer > _burningRecipeSO.burningTimerMax)
                     {
