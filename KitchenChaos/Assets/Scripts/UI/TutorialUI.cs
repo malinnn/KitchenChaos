@@ -2,13 +2,19 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
 {
     #region FIELDS
     public static TutorialUI Instance { get; private set; }
+
+    private bool _dontShowTutorial = false;
+
+    private const string SHOULD_SHOW_TUTORIAL = "ShouldShowTutorial";
 
     [Header("Buttons")]
     [SerializeField] private Button _moveUpButton;
@@ -28,6 +34,9 @@ public class TutorialUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _interactAlternateText;
     [SerializeField] private TextMeshProUGUI _pauseText;
 
+    [Header("Toggle")]
+    [SerializeField] private Toggle _dontShowTutorialToggle;
+
     #endregion
 
     #region SUBSCRIPTIONS
@@ -35,17 +44,63 @@ public class TutorialUI : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+
+        //For testing, in order to show the TutorialUI, set bool to == 0, not 1
+        //if 1 -> true, if 0 -> false
+
+        _dontShowTutorial = PlayerPrefs.GetInt(SHOULD_SHOW_TUTORIAL) == 1; 
+        Debug.Log("DontShowTutorial : " + _dontShowTutorial);
+
+        if (_dontShowTutorial == true)
+        {
+            HideTutorial();
+        }
+        else
+        {
+            ShowTutorial();
+        }
     }
 
     private void Start()
     {
-        GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+        if (_dontShowTutorial == false)
+        {
+            GameInput.Instance.OnInteractAction += GameInput_OnInteractAction;
+        }
+
+        _dontShowTutorialToggle.isOn = false;
+        _dontShowTutorialToggle.onValueChanged.AddListener(OnToggleValueChanged);
+
         UpdateButtonVisual();
+    }
+
+    private void OnDestroy()
+    {
+        if (_dontShowTutorial == true)
+        {
+            GameInput.Instance.OnInteractAction -= GameInput_OnInteractAction;
+        }
+    }
+
+    private void OnToggleValueChanged(bool value)
+    {
+        if (value)
+        {
+            _dontShowTutorial = true;
+            SaveShouldShowTutorialBool();
+            Debug.Log("DontShowTutorialToggle is ON !");
+        }
+        else
+        {
+            _dontShowTutorial = false;
+            SaveShouldShowTutorialBool();
+            Debug.Log("DontShowTutorialToggle is OFF !");
+        }
     }
 
     private void GameInput_OnInteractAction(object sender, EventArgs e)
     {
-        Hide();
+        HideTutorial();
 
         if (KitchenGameManager.Instance.IsTutorial())
         {
@@ -57,12 +112,18 @@ public class TutorialUI : MonoBehaviour
 
     #region FUNCTIONS
 
-    public void Show()
+    private void SaveShouldShowTutorialBool()
+    {
+        PlayerPrefs.SetInt(SHOULD_SHOW_TUTORIAL, _dontShowTutorial ? 1 : 0);
+        PlayerPrefs.Save();
+    }
+
+    public void ShowTutorial()
     {
         gameObject.SetActive(true);
     }
 
-    public void Hide()
+    public void HideTutorial()
     {
         gameObject.SetActive(false);
     }
@@ -76,6 +137,11 @@ public class TutorialUI : MonoBehaviour
         _interactText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Interact);
         _interactAlternateText.text = GameInput.Instance.GetBindingText(GameInput.Binding.InteractAlternate);
         _pauseText.text = GameInput.Instance.GetBindingText(GameInput.Binding.Pause);
+    }
+
+    public bool GetDontShowTutorialBool()
+    {
+        return _dontShowTutorial;
     }
 
     #endregion

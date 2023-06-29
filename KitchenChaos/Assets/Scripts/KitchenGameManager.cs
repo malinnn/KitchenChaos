@@ -37,7 +37,16 @@ public class KitchenGameManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        _state = State.Tutorial;
+
+        if (TutorialUI.Instance.GetDontShowTutorialBool() == false)
+        {
+            _state = State.Tutorial;
+        }
+        
+        else
+        {
+            _state = State.WaitingToStart;
+        }
 
         //_state = State.WaitingToStart;
         //State is set after Interact is first used, in order to close the tutorial
