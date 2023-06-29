@@ -36,6 +36,7 @@ public class TutorialUI : MonoBehaviour
 
     [Header("Toggle")]
     [SerializeField] private Toggle _dontShowTutorialToggle;
+    [SerializeField] private int _dontShowTutorialIntCheck = 1;
 
     #endregion
 
@@ -48,7 +49,7 @@ public class TutorialUI : MonoBehaviour
         //For testing, in order to show the TutorialUI, set bool to == 0, not 1
         //if 1 -> true, if 0 -> false
 
-        _dontShowTutorial = PlayerPrefs.GetInt(SHOULD_SHOW_TUTORIAL) == 1; 
+        _dontShowTutorial = PlayerPrefs.GetInt(SHOULD_SHOW_TUTORIAL) == _dontShowTutorialIntCheck; 
         Debug.Log("DontShowTutorial : " + _dontShowTutorial);
 
         if (_dontShowTutorial == true)
