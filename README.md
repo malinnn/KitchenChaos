@@ -39,10 +39,12 @@ in acest proiect, de care dispune Unity sunt : scene, obiecte 3D, componenta Tra
 
 ### Transformari avansate
 
-Cele 5 transformari avansate cerute sunt : translatie, rotatie, scalare, deformare si oglindire.
-Translatia are loc prin intermediul sistemului de movement, care este folosit pentru interactionarea cu player-ul. De asemenea, fiind un cooking game, player-ul va tine in mana alimente sau farfuria
-cu alimente care se va translata in acelasi timp cu jucatorul, astfel oferind acel aspect al actiunii de tinere in mana.
-Rotatia se poate spune ca se realizeaza prin intermediul movementului, daca se apasa individual cate o tasta, care va indrepta player-ul in directia opusa a celei actuale. Desi acest lucru se intampla
-si aici, am adaugat optiunea de rotire instanta a player-ului cu 90 grade, prin apasarea tastei ";".
-Scalarea am implementat-o pentru a adauga un feeling mai distractiv al jocului, mai exact prin apasarea tastelor "," si "." se va scala player-ul cu o valoare hardcodata, cu care se va micsora sau mari
-player-ul.
+Cele 5 transformari avansate cerute sunt : translatie, rotatie, scalare, deformare si oglindire.<br>
+***Translatia*** are loc prin intermediul sistemului de movement, care este folosit pentru interactionarea cu player-ul. De asemenea, fiind un cooking game, player-ul va tine in mana alimente sau farfuria cu alimente care se va translata in acelasi timp cu jucatorul, astfel oferind acel aspect al actiunii de tinere in mana.<br>
+***Rotatia*** se poate spune ca se realizeaza prin intermediul movementului, daca se apasa individual cate o tasta, care va indrepta player-ul in directia opusa a celei actuale. Desi acest lucru se intampla si aici, am adaugat optiunea de rotire instanta a player-ului cu 90 grade, prin apasarea tastei ";". Aici, m-am folosit de metoda atributului transform, mai exact transform.Rotate()<br>
+***Scalarea*** am implementat-o pentru a adauga un feeling mai distractiv al jocului, mai exact prin apasarea tastelor "," si "." se va scala player-ul cu o valoare hardcodata, cu care se va micsora sau mari player-ul. Aici, m-am folosit de proprietatea transform.localScale.<br>
+***Deformarea*** am implementat-o cu acelasi scop al scalarii, aici fiind vorba despre largirea sau micsoarea player-ului pe axa X, adica va "ingrasa" player-ul, prin intermediul butoanelor "[" si 
+"]". Si aici m-am folosit de transform.localScale, diferenta fiind ca aici se va modifica o singura axa, pe cand la scalare se modifica toate cele 3 axe.<br>
+***Oglindirea*** a fost folosita pentru crearea unei oglinzi, care este amplasata in fata player-ului. Acest lucru a fost realizat prin crearea unui plan, a unei texturi nou creata, dar si a unei
+camere, prin intermediul carora se constituie aceasta oglinda.
+
