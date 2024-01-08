@@ -41,14 +41,18 @@ in acest proiect, de care dispune Unity sunt : scene, obiecte 3D, componenta Tra
 
 Cele 5 transformari avansate cerute sunt : translatie, rotatie, scalare, deformare si oglindire.<br>
 ***Translatia*** are loc prin intermediul sistemului de movement, care este folosit pentru interactionarea cu player-ul. De asemenea, fiind un cooking game, player-ul va tine in mana alimente sau farfuria cu alimente care se va translata in acelasi timp cu jucatorul, astfel oferind acel aspect al actiunii de tinere in mana.<br>
-***Rotatia*** se poate spune ca se realizeaza prin intermediul movementului, daca se apasa individual cate o tasta, care va indrepta player-ul in directia opusa a celei actuale. Desi acest lucru se intampla si aici, am adaugat optiunea de rotire instanta a player-ului cu 90 grade, prin apasarea tastei ";". Aici, m-am folosit de metoda atributului transform, mai exact transform.Rotate()<br>
-***Scalarea*** am implementat-o pentru a adauga un feeling mai distractiv al jocului, mai exact prin apasarea tastelor "," si "." se va scala player-ul cu o valoare hardcodata, cu care se va micsora sau mari player-ul. Aici, m-am folosit de proprietatea transform.localScale.<br>
-***Deformarea*** am implementat-o cu acelasi scop al scalarii, aici fiind vorba despre largirea sau micsoarea player-ului pe axa X, adica va "ingrasa" player-ul, prin intermediul butoanelor "[" si 
-"]". Si aici m-am folosit de transform.localScale, diferenta fiind ca aici se va modifica o singura axa, pe cand la scalare se modifica toate cele 3 axe.<br>
+***Rotatia*** se poate spune ca se realizeaza prin intermediul movementului, daca se apasa individual cate o tasta, care va indrepta player-ul in directia opusa a celei actuale. Desi acest lucru se intampla si aici, am adaugat optiunea de rotire instanta a player-ului cu 90 grade, prin apasarea tastei ";". Aici, m-am folosit de metoda atributului transform, mai exact transform.Rotate().
+<p align="center"><img width="270" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/951a6e45-4b27-4f6a-88a9-093601b6e972"></p>
+
+***Scalarea*** am implementat-o pentru a adauga un feeling mai distractiv al jocului, mai exact prin apasarea tastelor "," si "." se va scala player-ul cu o valoare hardcodata, cu care se va micsora sau mari player-ul. Aici, m-am folosit de proprietatea transform.localScale.
+<p align="center"><img width="287" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/7058396c-b3bd-44aa-ae5f-68ed06b0546c"></p>
+
+***Deformarea*** am implementat-o cu acelasi scop al scalarii, aici fiind vorba despre largirea sau micsoarea player-ului pe axa X, mai exact va "ingrasa" player-ul, prin intermediul butoanelor "[" si "]".
+<p align="center"><img width="372" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/f1bd969c-7f71-4a1e-962d-9132050ebc4f"></p>
+
 ***Oglindirea*** a fost folosita pentru crearea unei oglinzi, care este amplasata in fata player-ului. Acest lucru a fost realizat prin crearea unui plan, a unei texturi nou creata, dar si a unei
 camere, prin intermediul carora se constituie aceasta oglinda.
 
-<p align="center"><img width="653" alt="image" style="width:65%" src="https://github.com/malinnn/KitchenChaos/assets/116735318/d1985e96-8452-4952-b221-0f5998be1c8f"></p>
 
 ### Shader Programming
 
@@ -61,8 +65,36 @@ Acest lucru l-am realizat pentru a oferi un aspect mai placut al jocului, prin a
 ### Iluminare
 
 Acest lucru se realizeaza prin intermediul obiectului Directional Light, prin care se modifica felul in care bate lumina in scena, defapt in tot jocul.
-
 <p align="center"><img width="232" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/8e0ed1b4-09ca-4ad9-8aec-9f6133288b7f"></p>
+
+### Camere si vizualizare
+
+Pentru vizualizarea jocului, se foloseste o camera pozitionata mai sus, in stilul unui joc de tip up-down.
+<p align="center"><img width="652" alt="image" width="60%" src="https://github.com/malinnn/KitchenChaos/assets/116735318/c84f8979-acae-4b34-a057-d64ff6e5bb96"></p>
+
+### Interactiune
+
+Toate interactiunile se fac prin intermediul butoanelor, mai putin in meniuri unde se foloseste click-ul stanga al mouse-ului. Acestea se pot vedea si la inceputul jocului, cand player-ul va fi
+intampinat de un UI, in care se vad bind-urile jocului.
+<p align="center"><img width="650" alt="image" width="60%" src="https://github.com/malinnn/KitchenChaos/assets/116735318/30d238b7-4518-4b51-bd03-a7d534ca06f1"></p>
+
+### Sunet
+
+Pentru muzica, am creat un obiect MusicManager prin care se controleaza muzica din joc. De asemenea, in acest script este implementata si metoda pentru modificarea volumului muzicii.
+<p align="center">
+<img width="233" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/66664289-eca8-4391-8601-2d3ea7693939">
+<img width="368" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/59889f81-5a6d-427f-a017-2b26440fb402">
+</p>
+
+Pentru restul sunetelor, am creat un obiect SoundManager prin care se controleaza SFX-urile. Aici, m-am folosit de Event-uri, carora li se da trigger in momentul interactiunii specifice.
+<p align="center">
+<img width="234" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/040ba15a-e154-45a9-9bc0-02cda0aeaf23">
+<img width="400" alt="image" width="50%" src="https://github.com/malinnn/KitchenChaos/assets/116735318/5a5c7a06-bd46-4949-a650-fd900f7a4eab">
+</p>
+
+
+
+
 
 
 
