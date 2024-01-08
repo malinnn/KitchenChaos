@@ -10615,7 +10615,7 @@ MonoBehaviour:
   _interactAlternateText: {fileID: 987379474}
   _pauseText: {fileID: 1812183639}
   _dontShowTutorialToggle: {fileID: 714666737}
-  _dontShowTutorialIntCheck: 1
+  _dontShowTutorialIntCheck: 0
 --- !u!1 &1272307943
 GameObject:
   m_ObjectHideFlags: 0
