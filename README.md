@@ -48,3 +48,21 @@ Cele 5 transformari avansate cerute sunt : translatie, rotatie, scalare, deforma
 ***Oglindirea*** a fost folosita pentru crearea unei oglinzi, care este amplasata in fata player-ului. Acest lucru a fost realizat prin crearea unui plan, a unei texturi nou creata, dar si a unei
 camere, prin intermediul carora se constituie aceasta oglinda.
 
+<p align="center"><img width="653" alt="image" style="width:65%" src="https://github.com/malinnn/KitchenChaos/assets/116735318/d1985e96-8452-4952-b221-0f5998be1c8f"></p>
+
+### Shader Programming
+
+Acest lucru l-am realizat pentru a oferi un aspect mai placut al jocului, prin adaugarea unor componente obiectului Global Volume, care vine din start dupa crearea unei scene 3D.
+<p align="center">
+<img width="222" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/6cf701fb-1a31-436b-ad3a-58290199fc11">
+<img width="223" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/640fe557-678f-49c8-b419-319f69fd1098">
+</p>
+
+### Iluminare
+
+Acest lucru se realizeaza prin intermediul obiectului Directional Light, prin care se modifica felul in care bate lumina in scena, defapt in tot jocul.
+
+<p align="center"><img width="232" alt="image" src="https://github.com/malinnn/KitchenChaos/assets/116735318/8e0ed1b4-09ca-4ad9-8aec-9f6133288b7f"></p>
+
+
+
