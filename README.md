@@ -1,4 +1,4 @@
-# Kitchen Chaos - Proiect Grafica
+# Kitchen Chaos - Proiect Grafica realizat de Papp Lorand-Malin
 
 ## In ce consta proiectul ?
 Acest proiect consta intr-un mic joc realizat in programul Unity, cu o idee de baza relativ simpla, care a fost realizat si ulterior modificat pentru a intalni cerintele date.
